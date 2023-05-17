@@ -5,10 +5,12 @@ import ContextProvider from './provider/ContextProvider.jsx'
 import { RouterProvider } from 'react-router-dom'
 import router from './routes/Routes.jsx'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ContextProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </ContextProvider>
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <div className='container mx-auto'>
+    <React.StrictMode>
+      <ContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </ContextProvider>
+    </React.StrictMode>
+  </div>
+);
