@@ -7,7 +7,6 @@ import "aos/dist/aos.css";
 
 const Navbar = () => {
   const { user, signOutAUser } = useContext(AuthContext);
-
     useEffect(() => {
       AOS.init();
       AOS.refresh();
@@ -66,7 +65,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar shadow-md lg:px-10 lg:py-3">
+      <div className="navbar shadow-lg lg:px-10 lg:py-3">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -93,7 +92,7 @@ const Navbar = () => {
             </ul>
           </div>
           <label
-            data-aos="zoom-in"
+            data-aos="fadeIn"
             data-aos-offset="200"
             data-aos-delay="50"
             data-aos-duration="1000"
@@ -114,13 +113,20 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src={logo} />
+            <div
+              title={user?.displayName}
+              className="w-10 tooltip rounded-full"
+            >
+              {user ? (
+                <img src={user?.photoURL} />
+              ) : (
+                <img src="https://picsum.photos/500/300?random=1" />
+              )}
             </div>
           </label>
         </div>
       </div>
-      <div className='h-[5px] bg-gainsboro'></div>
+      <div className="h-[5px] bg-gainsboro"></div>
     </>
   );
 };

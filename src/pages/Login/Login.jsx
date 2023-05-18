@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/ContextProvider";
-import { useContext } from "react";
-
+import { useContext, useRef } from "react";
 
 const Login = () => {
-  const {signInUser} = useContext(AuthContext);
+  const { signInUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const mailRef = useRef(null);
 
   // Login System
-  const handleSignIn = (e)=> {
+  const handleSignIn = (e) => {
     e.preventDefault();
-     const form = e.target;
-     const email = form.email.value
-     const password = form.password.value
-     console.log( email, password)
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
     //  const userInfo = {
     //   email: email,
@@ -21,16 +21,42 @@ const Login = () => {
 
     // Sign in with email and password
     signInUser(email, password)
-    .then(result => {
-      const user = result.user
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  // Google Sign in with popup
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault();
+    googleSignIn()
+    .then((result) => {
+      const user = result.user;
       console.log(user)
-      form.reset()
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  }
+
+  // GitHub Sign in with popup
+  const handleGithubSignIn = (e) => {
+    e.preventDefault();
+    githubSignIn()
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
     })
     .catch(err => {
       console.log(err.message)
     })
-
   }
+
 
   return (
     <div>
@@ -43,7 +69,10 @@ const Login = () => {
               Sign in with
             </h1>
             <div className="flex items-center justify-center space-x-4 mt-3">
-              <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button
+                onClick={handleGithubSignIn}
+                className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -56,7 +85,10 @@ const Login = () => {
                 </svg>
                 Github
               </button>
-              <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button
+                onClick={handleGoogleSignIn}
+                className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 mr-3"
@@ -89,7 +121,7 @@ const Login = () => {
                 <i className="fas fa-sign-in-alt fa-fw fa-lg"></i>
                 Login
               </h1>
-              <a
+              <div
                 href="#home"
                 className="mt-8 text-seagreen hover:text-orange-600 transition duration-500"
               >
@@ -106,7 +138,7 @@ const Login = () => {
                 </svg>
                 <Link to="/"> Back to Home</Link>
                 <i className="fas fa-chevron-circle-left fa-fw"></i>
-              </a>
+              </div>
             </div>
 
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -137,6 +169,7 @@ const Login = () => {
                       id="email"
                       name="email"
                       type="email"
+                      ref={mailRef}
                       className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
                       placeholder="your@email"
                     />
