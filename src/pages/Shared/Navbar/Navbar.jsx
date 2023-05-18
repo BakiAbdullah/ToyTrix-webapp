@@ -15,25 +15,37 @@ const Navbar = () => {
   const navMenu = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link className="link" to="/">
+          Home
+        </Link>
       </li>
 
       <li>
-        <Link to="/about">All Toys</Link>
+        <Link className="link" to="/alltoys">
+          All Toys
+        </Link>
       </li>
       <li>
-        <Link to="/about">My Toys</Link>
+        <Link className="link" to="/about">
+          My Toys
+        </Link>
       </li>
       <li>
-        <Link to="/about">Add A Toy</Link>
+        <Link className="link" to="/about">
+          Add A Toy
+        </Link>
       </li>
       <li>
-        <Link to="/about">Blog</Link>
+        <Link className="link" to="/about">
+          Blog
+        </Link>
       </li>
       {user?.email ? (
         <>
           <li>
-            <Link to="/bookings">My Bookings</Link>
+            <Link className="link" to="/bookings">
+              My Bookings
+            </Link>
           </li>
           <li>
             <button>Logout</button>
@@ -41,7 +53,9 @@ const Navbar = () => {
         </>
       ) : (
         <li>
-          <Link to="/login">Login</Link>
+          <Link className="link" to="/login">
+            Login
+          </Link>
         </li>
       )}
     </>
@@ -70,7 +84,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded w-52"
             >
               {navMenu}
             </ul>
