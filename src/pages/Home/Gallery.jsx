@@ -95,7 +95,7 @@ const Gallery = () => {
 
                     <div className="flex space-x-2 text-sm font-medium justify-between mt-5">
                       <button className="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-pink px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-pink ">
-                        <span>Add Cart</span>
+                        <span>View Details</span>
                       </button>
                       <button className="transition ease-in duration-300 bg-pink text-white  hover:shadow-lg  rounded-full w-9 h-9 text-center p-2">
                         <svg
@@ -203,7 +203,7 @@ const Gallery = () => {
 
                     <div className="flex space-x-2 text-sm font-medium justify-between mt-5">
                       <button className="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-pink px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-pink ">
-                        <span>Add Cart</span>
+                        <span>View Details</span>
                       </button>
                       <button className="transition ease-in duration-300 bg-pink text-white  hover:shadow-lg  rounded-full w-9 h-9 text-center p-2">
                         <svg
@@ -311,7 +311,7 @@ const Gallery = () => {
 
                     <div className="flex space-x-2 text-sm font-medium justify-between mt-5">
                       <button className="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-pink px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-pink ">
-                        <span>Add Cart</span>
+                        <span>View Details</span>
                       </button>
                       <button className="transition ease-in duration-300 bg-pink text-white  hover:shadow-lg  rounded-full w-9 h-9 text-center p-2">
                         <svg
@@ -419,7 +419,7 @@ const Gallery = () => {
 
                     <div className="flex space-x-2 text-sm font-medium justify-between mt-5">
                       <button className="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-pink px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-pink ">
-                        <span>Add Cart</span>
+                        <span>View Details</span>
                       </button>
                       <button className="transition ease-in duration-300 bg-pink text-white  hover:shadow-lg  rounded-full w-9 h-9 text-center p-2">
                         <svg
