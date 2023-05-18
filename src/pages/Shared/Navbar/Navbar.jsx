@@ -6,11 +6,18 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Navbar = () => {
+  const { user, signOutAUser } = useContext(AuthContext);
+
     useEffect(() => {
       AOS.init();
       AOS.refresh();
     }, []);
-  const { user } = useContext(AuthContext);
+
+    // Logout user
+    const logOutUser = ()=> {
+      signOutAUser()
+      .catch(err=> console.log(err.message));
+    }
 
   const navMenu = (
     <>
@@ -27,28 +34,24 @@ const Navbar = () => {
       </li>
       <li>
         <Link className="link" to="/about">
-          My Toys
-        </Link>
-      </li>
-      <li>
-        <Link className="link" to="/about">
-          Add A Toy
-        </Link>
-      </li>
-      <li>
-        <Link className="link" to="/about">
           Blog
         </Link>
       </li>
       {user?.email ? (
         <>
           <li>
-            <Link className="link" to="/bookings">
-              My Bookings
+            <Link className="link" to="/mytoy">
+              My Toy
+            </Link>
+          </li>
+
+          <li>
+            <Link className="link" to="/about">
+              Add A Toy
             </Link>
           </li>
           <li>
-            <button>Logout</button>
+            <button onClick={logOutUser}>Logout</button>
           </li>
         </>
       ) : (
