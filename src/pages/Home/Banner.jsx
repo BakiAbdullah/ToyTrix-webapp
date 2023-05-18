@@ -27,7 +27,7 @@ const Banner = () => {
               data-aos-once="false"
               className="text-white space-y-7 text-center w-1/2"
             >
-              <h2 className="lg:text-7xl font-bold">
+              <h2 className="lg:text-7xl font-extrabold">
                 Unlock the Magic of Play with Toytrix!{" "}
               </h2>
               <p className="lg:text-6xl ">

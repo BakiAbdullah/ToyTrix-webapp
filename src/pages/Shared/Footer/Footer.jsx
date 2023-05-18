@@ -10,7 +10,7 @@ const Footer = () => {
   }, []);
   return (
     <div
-      data-aos="fade-up"
+      data-aos="fade-down"
       data-aos-offset="200"
       data-aos-delay="50"
       data-aos-duration="1000"
@@ -137,11 +137,11 @@ const Footer = () => {
             <div className="flex items-center justify-center">
               <a className="flex title-font font-medium items-center md:justify-start justify-center">
                 <img
-                  className="rounded-full h-[45px] w-[45px]"
+                  className="rounded-full h-[50px] w-[50px]"
                   src={logo}
                   alt=""
                 />
-                <span className="ml-3 text-xl font-bold text-white">
+                <span className="ml-3 text-2xl font-bold text-white">
                   ToyTrix
                 </span>
               </a>
