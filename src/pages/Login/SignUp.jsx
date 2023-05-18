@@ -1,6 +1,33 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/ContextProvider";
 
 const SignUp = () => {
+  const {createUser} = useContext(AuthContext);
+
+  const signUpUser = (e)=> {
+    e.preventDefault();
+     const form = e.target;
+     const name = form.name.value;
+     const email = form.email.value;
+     const password = form.password.value;
+     const photoUrl = form.photoUrl.value;
+
+     console.log(name, email, password, photoUrl);
+
+    // Create a new User 
+     createUser(email, password)
+     .then(result => {
+      const user  = result.user;
+      console.log(user)
+      form.reset()
+     })
+     .catch(err => {
+      console.log(err);
+     })
+  }
+
+
   return (
     <div>
       <div>
@@ -60,7 +87,7 @@ const SignUp = () => {
                   <i className="fas fa-sign-in-alt fa-fw fa-lg"></i>
                   Or sign up with credentials
                 </h1>
-                <a
+                <div
                   href="#home"
                   className="mt-8 text-seagreen hover:text-orange-600 transition duration-500"
                 >
@@ -77,11 +104,11 @@ const SignUp = () => {
                   </svg>
                   <Link to="/"> Back to Home</Link>
                   <i className="fas fa-chevron-circle-left fa-fw"></i>
-                </a>
+                </div>
               </div>
 
               <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <form>
+                <form onSubmit={signUpUser}>
                   {/* UserName Field */}
                   <div className="mb-8">
                     <label
@@ -107,8 +134,8 @@ const SignUp = () => {
                       </div>
                       <input
                         id="username"
-                        name="username"
-                        type="username"
+                        name="name"
+                        type="text"
                         required
                         className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
                         placeholder="you@example.com"
@@ -196,9 +223,7 @@ const SignUp = () => {
                       photoUrl
                     </label>
                     <div className="mt-1 relative rounded-md shadow-sm">
-                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                       
-                      </div>
+                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
                       <input
                         name="photoUrl"
                         id="photoUrl"

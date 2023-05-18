@@ -1,7 +1,36 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/ContextProvider";
+import { useContext } from "react";
 
 
 const Login = () => {
+  const {signInUser} = useContext(AuthContext);
+
+  // Login System
+  const handleSignIn = (e)=> {
+    e.preventDefault();
+     const form = e.target;
+     const email = form.email.value
+     const password = form.password.value
+     console.log( email, password)
+
+    //  const userInfo = {
+    //   email: email,
+    //   password: password
+    //  }
+
+    // Sign in with email and password
+    signInUser(email, password)
+    .then(result => {
+      const user = result.user
+      console.log(user)
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+
+  }
+
   return (
     <div>
       <div className="mx-auto container flex items-center" id="nav">
@@ -80,14 +109,14 @@ const Login = () => {
             </div>
 
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <form>
+              <form onSubmit={handleSignIn}>
                 <div className="mb-8">
                   <label
-                    htmlFor="username"
+                    htmlFor="email"
                     className="block text-gray-700 text-sm font-bold mb-2"
                   >
                     <span className="text-seagreen">&nbsp;*</span>
-                    username
+                    email
                   </label>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -104,9 +133,11 @@ const Login = () => {
                       </svg>
                     </div>
                     <input
-                      id="username"
+                      id="email"
+                      name="email"
+                      type="email"
                       className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
-                      placeholder="you@example.com"
+                      placeholder="your@email"
                     />
                   </div>
                 </div>
@@ -136,7 +167,7 @@ const Login = () => {
                     <input
                       name="password"
                       id="password"
-                      type="text"
+                      type="password"
                       className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
                     />
                   </div>
