@@ -1,32 +1,89 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/ContextProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const {createUser} = useContext(AuthContext);
+  const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
 
-  const signUpUser = (e)=> {
+  const signUpUser = (e) => {
     e.preventDefault();
-     const form = e.target;
-     const name = form.name.value;
-     const email = form.email.value;
-     const password = form.password.value;
-     const photoUrl = form.photoUrl.value;
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photoUrl = form.photoUrl.value;
 
-     console.log(name, email, password, photoUrl);
+    console.log(name, email, password, photoUrl);
+    setError("");
 
-    // Create a new User 
-     createUser(email, password)
-     .then(result => {
-      const user  = result.user;
-      console.log(user)
-      form.reset()
-     })
-     .catch(err => {
-      console.log(err);
-     })
-  }
+    // Password Field validation
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setError("Please add at least two uppercase");
+      return;
+    } else if (!/(?=.*[@$!%*?&])/.test(password)) {
+      setError("Please add special character!");
+      return;
+    } else if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+    
+    // Create a new User
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Signed Up Successfully!",
+        });
+        form.reset();
+      })
+      .catch((err) => {
+         Swal.fire({
+           icon: "error",
+           title: `${err.message}`,
+         });
+      });
+  };
 
+  // Google Sign in with popup
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault();
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Sign Up Successful",
+          text: "Welcome " + user?.email,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  // GitHub Sign in with popup
+  const handleGithubSignIn = (e) => {
+    e.preventDefault();
+    githubSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Sign Up Successful",
+          text: "Welcome " + `${user?.email ? user?.email : ""}`,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <div>
@@ -40,7 +97,10 @@ const SignUp = () => {
                 Sign up with
               </h1>
               <div className="flex items-center justify-center space-x-4 mt-3">
-                <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                <button
+                  onClick={handleGithubSignIn}
+                  className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
@@ -53,7 +113,10 @@ const SignUp = () => {
                   </svg>
                   Github
                 </button>
-                <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-6 h-6 mr-3"
@@ -208,8 +271,7 @@ const SignUp = () => {
                       />
                     </div>
                     <p className="mt-4 italic text-gray-500 font-light text-xs">
-                      Password strength:{" "}
-                      <span className="font-bold text-green-400">strong</span>
+                      <span className="font-bold text-red-600">{error}</span>
                     </p>
                   </div>
 
@@ -228,6 +290,7 @@ const SignUp = () => {
                         name="photoUrl"
                         id="photoUrl"
                         type="url"
+                        required
                         className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
                       />
                     </div>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/ContextProvider";
 import { Navigate, useLocation } from "react-router-dom";
 import { RevolvingDot } from "react-loader-spinner";
+import Swal from "sweetalert2";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -26,7 +27,10 @@ const ProtectedRoute = ({ children }) => {
   if (user) {
     return children;
   } else {
-   alert("Please login to continue");
+    Swal.fire({
+      icon: "warning",
+      title: "Please Login to Continue!",
+    });
   }
 
   return <Navigate to="/login" state={{from : userLocation}} replace></Navigate> 

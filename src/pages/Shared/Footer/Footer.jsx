@@ -9,19 +9,13 @@ const Footer = () => {
     AOS.refresh();
   }, []);
   return (
-    <div
-      data-aos="fade-up"
-      data-aos-offset="200"
-      data-aos-delay="50"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out"
-      data-aos-mirror="true"
-      data-aos-once="false"
-    >
+    <div>
       <footer className="text-gray-600 body-font">
         <div className="container px-5 py-16 mx-auto">
           <div className="flex flex-wrap md:text-left text-center order-first">
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <div
+              className="lg:w-1/4 md:w-1/2 w-full px-4"
+            >
               <h2 className="title-font text-xl font-bold text-gray-900 tracking-widest mb-3">
                 Information
               </h2>
@@ -48,7 +42,9 @@ const Footer = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <div
+              className="lg:w-1/4 md:w-1/2 w-full px-4"
+            >
               <h2 className="title-font text-xl font-bold text-gray-900 tracking-widest mb-3">
                 Quick Links
               </h2>
@@ -67,7 +63,9 @@ const Footer = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <div
+              className="lg:w-1/4 md:w-1/2 w-full px-4"
+            >
               <h2 className="title-font text-xl font-bold text-gray-900 tracking-widest mb-3">
                 Contact Us
               </h2>
@@ -84,12 +82,14 @@ const Footer = () => {
                 </li>
                 <li>
                   <p className="text-gray-600 hover:text-gray-800">
-                   email: demo@gmail.com
+                    email: demo@gmail.com
                   </p>
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <div
+              className="lg:w-1/4 md:w-1/2 w-full px-4"
+            >
               <h2 className="title-font text-xl font-bold text-gray-900 tracking-widest mb-3">
                 Signup for newsletter
               </h2>

@@ -1,9 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/ContextProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signInUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const userLocation = useLocation();
   const navigate = useNavigate();
 
@@ -16,18 +18,31 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    setError("");
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
 
     // Sign in with email and password
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-
-        navigate(from, {replace: true})
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "Welcome " + user.email,
+        });
+        navigate(from, { replace: true });
         form.reset();
       })
       .catch((err) => {
-        console.log(err.message);
+        Swal.fire({
+          icon: "error",
+          title: `${err.message}`,
+        });
       });
   };
 
@@ -38,6 +53,11 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+         Swal.fire({
+           icon: "success",
+           title: "Login Successful",
+           text: "Welcome " + user?.email,
+         });
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -52,6 +72,11 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+         Swal.fire({
+           icon: "success",
+           title: "Login Successful",
+           text: "Welcome " + `${user?.email ? (user?.email) : ''}`,
+         });
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -170,6 +195,7 @@ const Login = () => {
                       id="email"
                       name="email"
                       type="email"
+                      required
                       className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
                       placeholder="your@email"
                     />
@@ -206,8 +232,7 @@ const Login = () => {
                     />
                   </div>
                   <p className="mt-4 italic text-gray-500 font-light text-xs">
-                    Password strength:{" "}
-                    <span className="font-bold text-green-400">strong</span>
+                    <span className="font-bold text-red-600">{error}</span>
                   </p>
                 </div>
 
