@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 
 const Navbar = () => {
   const { user, signOutAUser } = useContext(AuthContext);
+ 
     useEffect(() => {
       AOS.init();
       AOS.refresh();
