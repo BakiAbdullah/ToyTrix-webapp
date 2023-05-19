@@ -24,8 +24,7 @@
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.11.1",
     "sort-by": "^1.2.0",
-    "sweetalert2": "^11.7.5",
-    "tw-elements": "^1.0.0-beta2"
+    "sweetalert2": "^11.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
