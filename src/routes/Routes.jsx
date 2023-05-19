@@ -5,7 +5,7 @@ import Blog from "../pages/Blog/Blog";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Login/SignUp";
 import Home from "../pages/Home/Home/Home";
-import AllToys from "../pages/Home/Home/AllToys";
+import AllToys from "../pages/AllToys/AllToys";
 import ProtectedRoute from "./ProtectedRoute";
 import MyToy from "../pages/MyToy/MyToy";
 import AddToy from "../pages/AddAToy/AddToy";

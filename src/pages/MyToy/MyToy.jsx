@@ -3,7 +3,7 @@
 const MyToy = () => {
   return (
     <div>
-      <h1>My TOY PAGE</h1>
+      <h1>My TOY PAGE (Single User Added Toys)</h1>
     </div>
   );
 };
