@@ -23,7 +23,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  if (user?.email) {
+  if (user) {
     return children;
   } else {
    alert("Please login to continue");

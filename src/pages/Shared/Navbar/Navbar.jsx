@@ -1,23 +1,23 @@
-import logo from '/logo.png';
+import logo from "/logo.png";
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../provider/ContextProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {  FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, signOutAUser } = useContext(AuthContext);
- 
-    useEffect(() => {
-      AOS.init();
-      AOS.refresh();
-    }, []);
 
-    // Logout user
-    const logOutUser = ()=> {
-      signOutAUser()
-      .catch(err=> console.log(err.message));
-    }
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
+  // Logout user
+  const logOutUser = () => {
+    signOutAUser().catch((err) => console.log(err.message));
+  };
 
   const navMenu = (
     <>
@@ -37,7 +37,7 @@ const Navbar = () => {
           Blog
         </Link>
       </li>
-      {user?.email ? (
+      {user ? (
         <>
           <li>
             <Link className="link" to="/mytoy">
@@ -51,15 +51,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <button onClick={logOutUser}>Logout</button>
+            <button className="link" onClick={logOutUser}>
+              Logout
+            </button>
           </li>
         </>
       ) : (
-        <li>
-          <Link className="link" to="/login">
-            Login
-          </Link>
-        </li>
+        ""
       )}
     </>
   );
@@ -103,7 +101,7 @@ const Navbar = () => {
             data-aos-anchor-placement="top-center"
           >
             <img
-              className="w-[80px] h-[80px] avatar rounded-xl"
+              className="w-[80px] h-[80px] avatar rounded-t-full"
               src={logo}
               alt=""
             />
@@ -113,18 +111,23 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navMenu}</ul>
         </div>
         <div className="navbar-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div
-              title={user?.displayName}
-              className="w-10 tooltip rounded-full"
+          {user ? (
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div
+                title={user?.displayName}
+                className="w-10 tooltip rounded-full"
+              >
+                {user?.photoURL ? <img src={user?.photoURL} /> : <FaUserCircle className="text-4xl text-gray-600"></FaUserCircle>}
+              </div>
+            </label>
+          ) : (
+            <Link
+              className="btn border-none rounded-full px-6 bg-pink hover:bg-rose-300"
+              to="/login"
             >
-              {user ? (
-                <img src={user?.photoURL} />
-              ) : (
-                <img src="https://picsum.photos/500/300?random=1" />
-              )}
-            </div>
-          </label>
+              Login
+            </Link>
+          )}
         </div>
       </div>
       <div className="h-[5px] bg-gainsboro"></div>
