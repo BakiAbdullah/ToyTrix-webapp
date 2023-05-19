@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/ContextProvider";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 
 const Login = () => {
   const { signInUser, googleSignIn, githubSignIn } = useContext(AuthContext);
-  const mailRef = useRef(null);
+  const userLocation = useLocation();
+  const navigate = useNavigate();
+
+  const from = userLocation.state?.from?.pathname || "/";
 
   // Login System
   const handleSignIn = (e) => {
@@ -14,16 +17,13 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    //  const userInfo = {
-    //   email: email,
-    //   password: password
-    //  }
-
     // Sign in with email and password
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        
+        navigate(from, {replace: true})
         form.reset();
       })
       .catch((err) => {
@@ -35,28 +35,27 @@ const Login = () => {
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
     googleSignIn()
-    .then((result) => {
-      const user = result.user;
-      console.log(user)
-    })
-    .catch((err) => {
-      console.log(err.message);
-    })
-  }
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   // GitHub Sign in with popup
   const handleGithubSignIn = (e) => {
     e.preventDefault();
     githubSignIn()
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
-  }
-
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <div>
@@ -169,7 +168,6 @@ const Login = () => {
                       id="email"
                       name="email"
                       type="email"
-                      ref={mailRef}
                       className="block pr-10 shadow appearance-none border-2 border-orange-100 rounded w-full py-2 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-seagreen transition duration-500 ease-in-out"
                       placeholder="your@email"
                     />
