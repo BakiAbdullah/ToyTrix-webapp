@@ -1,3 +1,4 @@
+import useTitle from "../../../CustomHooks/UseTitleHook";
 import Banner from "../Banner";
 import ExtraSection from "../ExtraSection";
 import FeaturedCollection from "../FeaturedCollection";
@@ -6,6 +7,7 @@ import ShopByCategoryTab from "../ShopByCategoryTab";
 
 
 const Home = () => {
+  useTitle('Home');
   return (
     <div>
       <Banner></Banner>

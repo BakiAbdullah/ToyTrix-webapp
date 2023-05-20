@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import useTitle from "../../CustomHooks/UseTitleHook";
 
 
 const Blog = () => {
+  useTitle('Blog');
     return (
       <div>
         <section className="text-gray-600 bg-gray-50  body-font  overflow-hidden">
@@ -15,12 +17,22 @@ const Blog = () => {
                   What is express js? What is Nest JS ?
                 </h2>
                 <p className="leading-relaxed mb-8">
-                  Live-edge letterpress cliche, salvia fanny pack humblebrag
-                  narwhal portland. VHS man braid palo santo hoodie brunch trust
-                  fund. Bitters hashtag waistcoat fashion axe chia unicorn.
-                  Plaid fixie chambray 90s, slow-carb etsy tumeric. Cray pug you
-                  probably have not heard of them hexagon kickstarter craft beer
-                  pork chic.
+                  <strong>Express Js:</strong> Express is a fast and lightweight
+                  open-source application development framework based on
+                  Node.js. It is an excellent choice for creating small to
+                  medium-sized web applications and APIs, due to its simple and
+                  easy-to-learn approach. Express.js stands out for its
+                  impressive performance, with a middleware architecture
+                  enabling efficient communication between the server and
+                  client. <br />
+                  <strong> Nest Js:</strong> NestJS and Express.js are both
+                  Node.js based frameworks.It is a progressive Node.js framework
+                  for building efficient and scalable server-side applications.
+                  It is built with TypeScript and takes advantage of modern
+                  JavaScript features, design patterns, and architectural
+                  concepts. NestJS is heavily inspired by Angular, borrowing
+                  many of its concepts and features, such as decorators,
+                  dependency injection, and modular structure.
                 </p>
                 <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 border-opacity-75 mt-auto w-full">
                   <Link className="text-seagreen inline-flex items-center">
@@ -93,12 +105,27 @@ const Blog = () => {
                   Compare SQL and NoSQL databases?
                 </h2>
                 <p className="leading-relaxed mb-8">
-                  Live-edge letterpress cliche, salvia fanny pack humblebrag
-                  narwhal portland. VHS man braid palo santo hoodie brunch trust
-                  fund. Bitters hashtag waistcoat fashion axe chia unicorn.
-                  Plaid fixie chambray 90s, slow-carb etsy tumeric. Cray pug you
-                  probably have not heard of them hexagon kickstarter craft beer
-                  pork chic.
+                  <strong>SQL Database:</strong> Structured Query Language (SQL)
+                  is a programming language that allows both technical and
+                  non-technically-minded users to query, manipulate, and change
+                  data in a relational database. Organized into columns and rows
+                  within a table, SQL databases use a relational model that work
+                  best with well-defined structured data, such as names and
+                  quantities, in which relations exist between different
+                  entities. Within a SQL database, tables are linked through
+                  foreign keys that form relations between different tables and
+                  fields, such as customers and orders or employees and
+                  departments. <br />
+                  <strong>NoSQL Database:</strong> NoSQL databases are
+                  non-relational databases that store data in a manner other
+                  than the tabular relations used within SQL databases. While
+                  SQL databases are best used for structured data, NoSQL
+                  databases are suitable for structured, semi-structured, and
+                  unstructured data. As a result, NoSQL databases do not follow
+                  a rigid schema but instead have more flexible structures to
+                  accommodate their data-types. Furthermore, instead of using
+                  SQL to query the database, NoSQL databases use varying query
+                  languages (some do not even have a query language).
                 </p>
                 <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 border-opacity-75 mt-auto w-full">
                   <Link className="text-seagreen inline-flex items-center">
@@ -157,7 +184,7 @@ const Blog = () => {
                       Holden Caulfield
                     </span>
                     <span className="text-gray-500 text-xs tracking-widest mt-0.5">
-                      UI DEVELOPER
+                      UX DEVELOPER
                     </span>
                   </span>
                 </Link>
@@ -172,12 +199,25 @@ const Blog = () => {
                   and where should we store them on the client-side?
                 </h2>
                 <p className="leading-relaxed mb-8">
-                  Live-edge letterpress cliche, salvia fanny pack humblebrag
-                  narwhal portland. VHS man braid palo santo hoodie brunch trust
-                  fund. Bitters hashtag waistcoat fashion axe chia unicorn.
-                  Plaid fixie chambray 90s, slow-carb etsy tumeric. Cray pug you
-                  probably have not heard of them hexagon kickstarter craft beer
-                  pork chic.
+                  <strong>Access token:</strong> When a user logins in, the
+                  authorization server issues an access token, which is an
+                  artifact that client applications can use to make secure calls
+                  to an API server. When a client application needs to access
+                  protected resources on a server on behalf of a user, the
+                  access token lets the client signal to the server that it has
+                  received authorization by the user to perform certain tasks or
+                  access certain resources. <br />
+                  <strong>Refresh token:</strong> Access tokens may be valid for
+                  a short amount of time. Once they expire, client applications
+                  can use a refresh token to refresh the access token. That is,
+                  a refresh token is a credential artifact that lets a client
+                  application get new access tokens without having to ask the
+                  user to log in again.{" "}
+                  <em>
+                    We can store JWT Tokens in client sides Local or Session
+                    Strorage also the best we can is to store then in http only
+                    Cookies.
+                  </em>
                 </p>
                 <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 border-opacity-75 mt-auto w-full">
                   <Link className="text-seagreen inline-flex items-center">
@@ -250,12 +290,17 @@ const Blog = () => {
                   What is MongoDB aggregate and how does it work?
                 </h2>
                 <p className="leading-relaxed mb-8">
-                  Live-edge letterpress cliche, salvia fanny pack humblebrag
-                  narwhal portland. VHS man braid palo santo hoodie brunch trust
-                  fund. Bitters hashtag waistcoat fashion axe chia unicorn.
-                  Plaid fixie chambray 90s, slow-carb etsy tumeric. Cray pug you
-                  probably have not heard of them hexagon kickstarter craft beer
-                  pork chic.
+                  When MongoDB users want to gather metrics from a MongoDB
+                  database, aggregation of MongoDB is the best tool for this. In
+                  MongoDB, aggregation can be defined as the operation that is
+                  used for processing various types of data in the collection,
+                  which returns a calculated result. The concept of aggregation
+                  mainly clusters out your data from multiple different
+                  documents which are then used and operates in lots of ways (on
+                  these clustered data) to return a combined result which can
+                  bring new information to the existing database. You can relate
+                  aggregation to that of the count(*) along with the group by
+                  used in SQL since both are equivalent in terms of the working.
                 </p>
                 <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 border-opacity-75 mt-auto w-full">
                   <Link className="text-seagreen inline-flex items-center">

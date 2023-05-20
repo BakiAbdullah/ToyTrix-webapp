@@ -2,8 +2,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/ContextProvider";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import useTitle from "../../CustomHooks/UseTitleHook";
 
 const Login = () => {
+  useTitle('Login');
   const { signInUser, googleSignIn, githubSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const userLocation = useLocation();

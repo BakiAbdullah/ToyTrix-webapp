@@ -1,12 +1,30 @@
-import { Link } from "react-router-dom";
+
+import useTitle from "../../CustomHooks/UseTitleHook";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../provider/ContextProvider";
+import AllToysRow from "./AllToysRow";
 
 const AllToys = () => {
+  useTitle("All Toys");
+
+  const { user } = useContext(AuthContext);
+  const [userToys, setUserToys] = useState([]);
+  const dataByUserEmail = `http://localhost:3000/alltoys?${user?.email}`;
+  useEffect(() => {
+    fetch(dataByUserEmail)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserToys(data);
+      });
+  }, []);
+  console.log(userToys);
+
   return (
     <div>
       <div className="overflow-x-auto">
         <div className="min-w-screen min-h-screen flex items-center justify-center bg-gray-100 overflow-hidden">
-          <div className="w-full lg:max-w-7xl ">
-            <h1 className="font-bold text-center text-5xl mb-12">All Toys</h1>
+          <div className="w-full lg:max-w-7xl mb-12">
+            <h1 className="font-bold text-center text-5xl mt-12 mb-12">All Toys</h1>
             {/* input field */}
             <div className="relative">
               <input
@@ -46,40 +64,13 @@ const AllToys = () => {
                   </tr>
                 </thead>
                 <tbody className="text-gray-600 text-sm font-light">
-                  <tr className="border-b border-gray-200 bg-gray-50 hover:bg-gray-100">
-                    <td className="py-3 px-6 text-center">
-                      <div className="flex text-center">
-                        <span>Marco</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-6 text-center">
-                      <div className="flex items-center justify-start">
-                        <span>Star War Trooper</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-6 text-center">
-                      <div className="flex items-center justify-center">
-                        <span>star war</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-6 text-center">
-                      <span>$134</span>
-                    </td>
-                    <td className="py-3 px-6 text-left">
-                      <div className="flex items-center justify-center">
-                        <span>9</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-6 text-center">
-                      <div className="flex item-center justify-center">
-                        <Link to={``}>
-                          <button className="px-5 py-2 rounded transition duration-300 bg-pink hover:bg-gainsboro text-white focus:outline-none">
-                            View Details
-                          </button>
-                        </Link>
-                      </div>
-                    </td>
-                  </tr>
+                  {userToys.map((userToy) => (
+                    <AllToysRow
+                    key={userToy._id}
+                    userToy={userToy}
+                    ></AllToysRow>
+                  ))}
+                  
                 </tbody>
               </table>
             </div>

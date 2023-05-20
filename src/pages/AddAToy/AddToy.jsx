@@ -1,8 +1,11 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
+import useTitle from "../../CustomHooks/UseTitleHook";
+import Swal from "sweetalert2";
 
 const AddToy = () => {
+  useTitle("Add a toy");
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -18,29 +21,51 @@ const AddToy = () => {
   const handleAddToy = (e) => {
     e.preventDefault();
     const form = e.target;
-    const sellerName = form.full_name.value;
-    const email = form.email.value;
+    const seller = form.full_name.value;
+    const sellerEmail = form.email.value;
     const toyName = form.toy_name.value;
-    const toyCategory = form.toyCategory.value;
-    const toyPrice = parseInt(form.price.value);
-    const toyDescription = form.description.value;
-    const toyImage = form.photoURL.value;
-    const toyRating = parseInt(form.rating.value);
-    const toyQuantity = parseInt(form.quantity.value);
+    const subCategory = form.toyCategory.value;
+    const price = parseInt(form.price.value);
+    const description = form.description.value;
+    const imgUrl = form.photoURL.value;
+    const rating = parseInt(form.rating.value);
+    const availableQuantity = parseInt(form.quantity.value);
 
     const toyInfo = {
-      sellerName,
-      email,
+      seller,
+      sellerEmail,
       toyName,
-      toyCategory,
-      toyPrice,
-      toyDescription,
-      toyImage,
-      toyRating,
-      toyQuantity,
+      subCategory,
+      price,
+      description,
+      imgUrl,
+      rating,
+      availableQuantity,
     };
     console.log(toyInfo);
+
+    // Add A Toy/POST Method
+    fetch("https://toytrix-server.vercel.app/addtoy", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(toyInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              icon: "success",
+              title: "Success...",
+              text: "Toy Added Succesfully!",
+            });
+          }
+      });
   };
+
+  
 
   const [selectedCategory, setselectedCategory] = useState(toyCategories[0]);
 
@@ -135,7 +160,7 @@ const AddToy = () => {
                         <select
                           id="category"
                           name="toyCategory"
-                          className="block w-full px-2 mt-1 h-10 focus:outline-none text-gray-700 bg-white border border-gray-300 rounded dark:bg-gray-800 dark:text-gray-300 focus:outline-none"
+                          className="block w-full px-2 mt-1 h-10 text-gray-700 bg-white border border-gray-300 rounded dark:bg-gray-800 dark:text-gray-300 focus:outline-none"
                           value={selectedCategory}
                           onChange={handleSelectedValue}
                         >

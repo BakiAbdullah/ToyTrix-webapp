@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/ContextProvider";
 import Swal from "sweetalert2";
+import useTitle from "../../CustomHooks/UseTitleHook";
 
 const SignUp = () => {
+  useTitle('Sign Up');
   const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
 

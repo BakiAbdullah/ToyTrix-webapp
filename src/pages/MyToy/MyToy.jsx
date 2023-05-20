@@ -1,4 +1,10 @@
+
+import useTitle from "../../CustomHooks/UseTitleHook";
+
 const MyToy = () => {
+  // Dynamic Title Hook
+  useTitle("MyToy");
+ 
   return (
     <div>
       <div className="overflow-x-auto">
