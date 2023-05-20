@@ -64,7 +64,7 @@ const AddToy = () => {
               data-aos-once="false"
               className="text-center my-8"
             >
-              <span className="font-bold  text-5xl mb-5">Add a Toy</span>
+              <span className="font-bold text-5xl mb-5">Add a Toy</span>
             </div>
 
             <div
