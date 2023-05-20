@@ -5,10 +5,9 @@ const AllToys = () => {
     <div>
       <div className="overflow-x-auto">
         <div className="min-w-screen min-h-screen flex items-center justify-center bg-gray-100 overflow-hidden">
-          <div className="w-full lg:max-w-7xl">
+          <div className="w-full lg:max-w-7xl ">
             <h1 className="font-bold text-center text-5xl mb-12">All Toys</h1>
-            {/* input field        */}
-
+            {/* input field */}
             <div className="relative">
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-1/3 py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"

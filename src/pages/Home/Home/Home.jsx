@@ -1,6 +1,8 @@
 import Banner from "../Banner";
+import ExtraSection from "../ExtraSection";
 import FeaturedCollection from "../FeaturedCollection";
 import Gallery from "../Gallery";
+import ShopByCategoryTab from "../ShopByCategoryTab";
 
 
 const Home = () => {
@@ -8,7 +10,9 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <Gallery></Gallery>
+      <ShopByCategoryTab></ShopByCategoryTab>
       <FeaturedCollection></FeaturedCollection>
+      <ExtraSection></ExtraSection>
     </div>
   );
 };

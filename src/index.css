@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Varela Round', sans-serif;
+    font-family: "Varela Round", sans-serif;
   }
 }
 
 .link {
-  @apply hover:text-pink no-underline bg-transparent hover:bg-transparent hover:border-b-2 border-pink transition-colors duration-200
+  @apply hover:text-pink font-semibold no-underline bg-transparent hover:bg-transparent hover:border-b-2 border-pink transition-colors duration-300;
 }
