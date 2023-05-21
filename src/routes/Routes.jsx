@@ -11,6 +11,7 @@ import MyToy from "../pages/MyToy/MyToy";
 import AddToy from "../pages/AddAToy/AddToy";
 import ShopByToyCard from "../pages/Home/ShopByToyCard";
 import ToyDetails from "../pages/AllToys/ToyDetails";
+import MyToyUpdateForm from "../pages/MyToy/MyToyUpdateForm";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,18 @@ const router = createBrowserRouter([
             <ToyDetails></ToyDetails>
           </ProtectedRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:3000/alltoys/toy/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://toytrix-server.vercel.app/alltoys/toy/${params.id}`),
+      },
+      {
+        path: "/mytoy/:id",
+        element: (
+          <ProtectedRoute>
+            <MyToyUpdateForm></MyToyUpdateForm>
+          </ProtectedRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://toytrix-server.vercel.app/mytoy/${params.id}`),
       },
       {
         path: "/mytoy",

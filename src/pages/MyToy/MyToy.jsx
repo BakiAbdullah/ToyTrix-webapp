@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import useTitle from "../../CustomHooks/UseTitleHook";
 import { AuthContext } from "../../provider/ContextProvider";
 import MyToyTable from "./MyToyTable";
+import Swal from "sweetalert2";
 
 const MyToy = () => {
   const { user } = useContext(AuthContext);
   const [myToyInfo, SetMyToyInfo] = useState([]);
-  const url = `http://localhost:3000/mytoy?email=${user?.email}`;
+  const url = `https://toytrix-server.vercel.app/mytoy?email=${user?.email}`;
 
   useEffect(() => {
     fetch(url)
@@ -15,6 +16,29 @@ const MyToy = () => {
         SetMyToyInfo(data);
       });
   }, [url]);
+
+  // Delete Toy By id
+  const deleteToyHandler = (id) => {
+    const proceedDelete = confirm("Are you sure you want to Delete");
+    if (proceedDelete) {
+      const url = `https://toytrix-server.vercel.app/mytoy/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            Swal.fire({
+              icon: "success",
+              title: "Toy Deleted Successfully",
+            });
+            const remainingToys = myToyInfo.filter((toy) => toy._id !== id);
+            SetMyToyInfo(remainingToys);
+          }
+        });
+    }
+  };
 
   // Dynamic Title Hook
   useTitle("MyToy");
@@ -46,6 +70,7 @@ const MyToy = () => {
                     <MyToyTable
                       key={singleToy._id}
                       singleToy={singleToy}
+                      deleteToyHandler={deleteToyHandler}
                     ></MyToyTable>
                   ))}
                 </tbody>
