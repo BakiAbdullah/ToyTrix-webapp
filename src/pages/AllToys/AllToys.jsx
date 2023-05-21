@@ -8,8 +8,8 @@ const AllToys = () => {
 
   const { user } = useContext(AuthContext);
   const [userToys, setUserToys] = useState([]);
-  const [searchText, setSearchText] = useState('');
-  const [updateText, setUpdateText] = useState([])
+  const [searchText, setSearchText] = useState("");
+  const [updateText, setUpdateText] = useState([]);
 
   const dataByUserEmail = `https://toytrix-server.vercel.app/alltoys?limit=20&${user?.email}`;
   useEffect(() => {
@@ -17,7 +17,7 @@ const AllToys = () => {
       .then((res) => res.json())
       .then((data) => {
         setUserToys(data);
-        setUpdateText(data.length)
+        setUpdateText(data.length);
       });
   }, [dataByUserEmail]);
 
@@ -28,7 +28,7 @@ const AllToys = () => {
       .then((data) => {
         setUserToys(data);
       });
-  }
+  };
 
   return (
     <div>

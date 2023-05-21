@@ -1,11 +1,13 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useTitle from "../../CustomHooks/UseTitleHook";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/ContextProvider";
 
 const AddToy = () => {
+  const {user} = useContext(AuthContext);
   const navigate = useNavigate();
   useTitle("Add a toy");
   useEffect(() => {
@@ -83,11 +85,11 @@ const AddToy = () => {
         <div className="container max-w-screen-lg mx-auto">
           <div>
             <div
-              data-aos="zoom-in"
+              data-aos="zoom-in-right"
               data-aos-offset="200"
               data-aos-delay="50"
-              data-aos-duration="700"
-              data-aos-easing="easeIn"
+              data-aos-duration="500"
+              data-aos-easing="ease-in-out"
               data-aos-mirror="true"
               data-aos-once="false"
               className="text-center my-8"
@@ -96,11 +98,11 @@ const AddToy = () => {
             </div>
 
             <div
-              data-aos="zoom-in"
+              data-aos="zoom-in-right"
               data-aos-offset="200"
               data-aos-delay="50"
-              data-aos-duration="700"
-              data-aos-easing="linear"
+              data-aos-duration="500"
+              data-aos-easing="ease-in-out"
               data-aos-mirror="true"
               data-aos-once="false"
               className="bg-lightblue rounded shadow-xl p-4 px-4 md:p-8 mb-6"
@@ -124,6 +126,8 @@ const AddToy = () => {
                         type="text"
                         name="full_name"
                         id="full_name"
+                        placeholder="seller name"
+                        defaultValue={user?.displayName}
                         className="h-10 focus:outline-none border mt-1 rounded px-4 w-full bg-gray-50"
                       />
                     </div>
@@ -136,6 +140,7 @@ const AddToy = () => {
                         type="email"
                         name="email"
                         id="email"
+                        defaultValue={user?.email}
                         required
                         className="h-10 focus:outline-none border mt-1 rounded px-4 w-full bg-gray-50"
                         placeholder="email@domain.com"

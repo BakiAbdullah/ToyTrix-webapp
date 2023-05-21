@@ -18,7 +18,16 @@ const ToyDetails = () => {
   
   
   return (
-    <div className="flex flex-col justify-center h-screen">
+    <div
+      data-aos="zoom-in-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="600"
+      data-aos-easing="ease-in-out"
+      data-aos-mirror="true"
+      data-aos-once="false"
+      className="flex flex-col justify-center h-screen"
+    >
       <div className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-6 max-w-xs md:max-w-6xl mx-auto border-8 border-gray-200 bg-white">
         <div className="w-full md:w-1/2 bg-white grid place-items-center">
           <img src={imgUrl} alt="tailwind logo" className="rounded-xl" />
