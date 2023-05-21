@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import starwar1 from '/starwar1.jpg'
 import starwar2 from '/starwar2.jpg'
-import starwar3 from '/starwar3.jpg'
+import car3 from '/car3.jpg'
+import city5 from '/city5.jpg'
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -267,7 +268,7 @@ const Gallery = () => {
                       </button>
                     </div>
                     <img
-                      src={starwar3}
+                      src={car3}
                       alt="Just a flower"
                       className=" w-full   object-fill  rounded-2xl"
                     />
@@ -289,7 +290,7 @@ const Gallery = () => {
                       </div>
                       <div className="flex items-center w-full justify-between min-w-0 ">
                         <h2 className="text-xl font-semibold mr-auto cursor-pointer text-gray-600 truncate">
-                          Star war toy lego
+                          Car toy lego
                         </h2>
                         <div className="flex items-center bg-darkseagreen text-white text-xs px-2 py-1 ml-3 rounded-lg">
                           INSTOCK
@@ -375,7 +376,7 @@ const Gallery = () => {
                       </button>
                     </div>
                     <img
-                      src={starwar2}
+                      src={city5}
                       alt="Just a flower"
                       className=" w-full   object-fill  rounded-2xl"
                     />
@@ -397,7 +398,7 @@ const Gallery = () => {
                       </div>
                       <div className="flex items-center w-full justify-between min-w-0 ">
                         <h2 className="text-xl font-semibold mr-auto cursor-pointer text-gray-600 truncate">
-                          Star war toy lego
+                          City Toy lego
                         </h2>
                         <div className="flex items-center bg-darkseagreen text-white text-xs px-2 py-1 ml-3 rounded-lg">
                           INSTOCK
