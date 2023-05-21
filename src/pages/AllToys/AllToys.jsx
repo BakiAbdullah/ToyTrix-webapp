@@ -55,6 +55,7 @@ const AllToys = () => {
               <table className="min-w-max w-full table-auto">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <th className="py-3 px-6 text-left">SL</th>
                     <th className="py-3 px-6 text-left">Seller Name</th>
                     <th className="py-3 px-6 text-left">Toy Name</th>
                     <th className="py-3 px-6 text-center">Category</th>
@@ -64,10 +65,11 @@ const AllToys = () => {
                   </tr>
                 </thead>
                 <tbody className="text-gray-600 text-sm font-light">
-                  {userToys.map((userToy) => (
+                  {userToys.map((userToy, index) => (
                     <AllToysRow
                     key={userToy._id}
                     userToy={userToy}
+                    index={index}
                     ></AllToysRow>
                   ))}
                   
@@ -82,7 +84,7 @@ const AllToys = () => {
                 <span className="font-bold text-gray-600"> 20 </span>
                 of
                 <span className="font-bold text-gray-600"> </span>
-                results
+                many results
               </p>
               {/* 1 to 20 of rest results */}
             </div>
