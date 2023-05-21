@@ -4,22 +4,22 @@ import ShopByToyCard from "./ShopByToyCard";
 
 const ShopByCategoryTab = () => {
   const [toys, setToys] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(['City']);
+  const [activeCategory, setActiveCategory] = useState(["City"]);
 
   // Load data Dynamically Based on Toys Category by Query Text
-  useEffect(()=>{
-    fetch(`http://localhost:3000/alltoys/${activeCategory}`)
-    .then(res => res.json())
-    .then(data => {
-      setToys(data.slice(2,5));
-    })
-  },[activeCategory])
+  useEffect(() => {
+    fetch(`https://toytrix-server.vercel.app/alltoys/${activeCategory}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data.slice(1, 4));
+      });
+  }, [activeCategory]);
 
-  console.log(toys)
+  console.log(toys);
 
   const handleCategoryTabClick = (categoryName) => {
-    setActiveCategory(categoryName)
-  }
+    setActiveCategory(categoryName);
+  };
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto lg:px-12">

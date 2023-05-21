@@ -1,14 +1,8 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import AOS from "aos";
 import "aos/dist/aos.css";
-
 const ShopByToyCard = ({toy}) => {
-   useEffect(() => {
-     AOS.init();
-     AOS.refresh();
-   }, []);
-  const { imgUrl, toyName, price, } = toy;
+   
+  const { imgUrl, toyName, price, _id } = toy;
   return (
     <div>
       <div
@@ -83,7 +77,7 @@ const ShopByToyCard = ({toy}) => {
                 {price}
               </span>
               <Link
-                href="#"
+                to={`/alltoys/toy/${_id}`}
                 className="text-white hover:bg-cyan-600 transition-colors duration-300 bg-cyansky  font-medium rounded-full text-sm px-5 py-2.5"
               >
                 View Details

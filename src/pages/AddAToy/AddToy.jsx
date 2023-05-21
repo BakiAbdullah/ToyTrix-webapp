@@ -3,8 +3,10 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import useTitle from "../../CustomHooks/UseTitleHook";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddToy = () => {
+  const navigate = useNavigate();
   useTitle("Add a toy");
   useEffect(() => {
     AOS.init();
@@ -61,6 +63,7 @@ const AddToy = () => {
               title: "Success...",
               text: "Toy Added Succesfully!",
             });
+            navigate('/alltoys')
           }
       });
   };

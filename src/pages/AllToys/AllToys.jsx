@@ -1,4 +1,3 @@
-
 import useTitle from "../../CustomHooks/UseTitleHook";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/ContextProvider";
@@ -9,30 +8,51 @@ const AllToys = () => {
 
   const { user } = useContext(AuthContext);
   const [userToys, setUserToys] = useState([]);
-  const dataByUserEmail = `http://localhost:3000/alltoys?${user?.email}`;
+  const [searchText, setSearchText] = useState('');
+  const [updateText, setUpdateText] = useState([])
+
+  const dataByUserEmail = `https://toytrix-server.vercel.app/alltoys?limit=20&${user?.email}`;
   useEffect(() => {
     fetch(dataByUserEmail)
       .then((res) => res.json())
       .then((data) => {
         setUserToys(data);
+        setUpdateText(data.length)
       });
-  }, []);
-  console.log(userToys);
+  }, [dataByUserEmail]);
+
+  // Search by Toy Name
+  const handleToySearch = () => {
+    fetch(`https://toytrix-server.vercel.app/searchToys/${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserToys(data);
+      });
+  }
 
   return (
     <div>
       <div className="overflow-x-auto">
         <div className="min-w-screen min-h-screen flex items-center justify-center bg-gray-100 overflow-hidden">
           <div className="w-full lg:max-w-7xl mb-12">
-            <h1 className="font-bold text-center text-5xl mt-12 mb-12">All Toys</h1>
+            <h1 className="font-bold text-center text-5xl mt-12 mb-12">
+              All Toys
+            </h1>
             {/* input field */}
             <div className="relative">
               <input
+                onChange={(e) => setSearchText(e.target.value)}
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-1/3 py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="Search Toys"
               />
+              <button
+                onClick={handleToySearch}
+                className="btn bg-pink border-none py-1 ml-2"
+              >
+                Search
+              </button>
               <div className="absolute left-0 inset-y-0 flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,21 +87,21 @@ const AllToys = () => {
                 <tbody className="text-gray-600 text-sm font-light">
                   {userToys.map((userToy, index) => (
                     <AllToysRow
-                    key={userToy._id}
-                    userToy={userToy}
-                    index={index}
+                      key={userToy._id}
+                      userToy={userToy}
+                      index={index}
                     ></AllToysRow>
                   ))}
-                  
                 </tbody>
               </table>
             </div>
             <div>
               <p className="text-sm leading-5 text-gray-700">
                 Showing
-                <span className="font-bold text-gray-600"> 1 </span>
-                to
-                <span className="font-bold text-gray-600"> 20 </span>
+                <span className="font-bold text-gray-600">
+                  {" "}
+                  {updateText}-20{" "}
+                </span>
                 of
                 <span className="font-bold text-gray-600"> </span>
                 many results

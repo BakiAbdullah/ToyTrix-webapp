@@ -9,6 +9,8 @@ import AllToys from "../pages/AllToys/AllToys";
 import ProtectedRoute from "./ProtectedRoute";
 import MyToy from "../pages/MyToy/MyToy";
 import AddToy from "../pages/AddAToy/AddToy";
+import ShopByToyCard from "../pages/Home/ShopByToyCard";
+import ToyDetails from "../pages/AllToys/ToyDetails";
 
 const router = createBrowserRouter([
   {
@@ -21,12 +23,29 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/",
+        element: (
+          <ProtectedRoute>
+            <ShopByToyCard></ShopByToyCard>
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "/alltoys",
         element: (
           <ProtectedRoute>
             <AllToys></AllToys>
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/alltoys/toy/:id",
+        element: (
+          <ProtectedRoute>
+            <ToyDetails></ToyDetails>
+          </ProtectedRoute>
+        ),
+        loader: ({params}) => fetch(`http://localhost:3000/alltoys/toy/${params.id}`),
       },
       {
         path: "/mytoy",
