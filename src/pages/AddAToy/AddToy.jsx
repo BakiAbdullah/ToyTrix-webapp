@@ -65,7 +65,7 @@ const AddToy = () => {
               title: "Success...",
               text: "Toy Added Succesfully!",
             });
-            navigate('/alltoys')
+            navigate('/mytoy')
           }
       });
   };

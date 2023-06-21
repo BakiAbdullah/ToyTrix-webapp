@@ -4,12 +4,11 @@ import { AuthContext } from "../../provider/ContextProvider";
 import AllToysRow from "./AllToysRow";
 
 const AllToys = () => {
-  useTitle("All Toys");
-
   const { user } = useContext(AuthContext);
   const [userToys, setUserToys] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [updateText, setUpdateText] = useState([]);
+  useTitle("All Toys");
 
   const dataByUserEmail = `https://toytrix-server.vercel.app/alltoys?limit=20&${user?.email}`;
   useEffect(() => {
@@ -19,7 +18,7 @@ const AllToys = () => {
         setUserToys(data);
         setUpdateText(data.length);
       });
-  }, [dataByUserEmail]);
+  }, [dataByUserEmail]);                 
 
   // Search by Toy Name
   const handleToySearch = () => {
